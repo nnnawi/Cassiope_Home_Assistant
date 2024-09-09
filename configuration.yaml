@@ -1,0 +1,67 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+recorder:
+  purge_keep_days: 7  # Keeps 7 days of data, adjust as necessary
+  commit_interval: 1  # Commits every 1 second to the database
+
+sensor:
+  - platform: statistics
+    name: "Temperature Sensor 1 Mean Over Last 24 Hours"
+    entity_id: sensor.mock_temperature_sensor_1
+    state_characteristic: mean
+    max_age:
+      hours: 24
+
+  - platform: template
+    sensors:
+      mock_temperature_sensor_1:
+        friendly_name: "Mock Temperature Sensor 1"
+        unit_of_measurement: "°C"
+        value_template: "{{ 15 + (range(0, 10)|random) }}"
+        device_class: temperature
+      mock_humidity_sensor_1:
+        friendly_name: "Mock Humidity Sensor 1"
+        unit_of_measurement: "%"
+        value_template: "{{ 30 + (range(0, 20)|random) }}"
+        device_class: humidity
+      mock_temperature_sensor_2:
+        friendly_name: "Mock Temperature Sensor 2"
+        unit_of_measurement: "°C"
+        value_template: "{{ 15 + (range(0, 10)|random) }}"
+        device_class: temperature
+      mock_humidity_sensor_2:
+        friendly_name: "Mock Humidity Sensor 2"
+        unit_of_measurement: "%"
+        value_template: "{{ 30 + (range(0, 20)|random) }}"
+        device_class: humidity
+      mock_temperature_sensor_3:
+        friendly_name: "Mock Temperature Sensor 3"
+        unit_of_measurement: "°C"
+        value_template: "{{ 15 + (range(0, 10)|random) }}"
+        device_class: temperature
+      mock_humidity_sensor_3:
+        friendly_name: "Mock Humidity Sensor 3"
+        unit_of_measurement: "%"
+        value_template: "{{ 30 + (range(0, 20)|random) }}"
+        device_class: humidity
+      mock_temperature_sensor_4:
+        friendly_name: "Mock Temperature Sensor 4"
+        unit_of_measurement: "°C"
+        value_template: "{{ 15 + (range(0, 10)|random) }}"
+        device_class: temperature
+      mock_humidity_sensor_4:
+        friendly_name: "Mock Humidity Sensor 4"
+        unit_of_measurement: "%"
+        value_template: "{{ 30 + (range(0, 20)|random) }}"
+        device_class: humidity
+
